@@ -11,7 +11,7 @@ export default class Haiku {
             "oa", "oe", "ue", "ui", "ou",
             "oo", "au", "ei", "eu", "oi", "oy", "ou"
         ];
-        const prefixArray = ["dis", "de", "mis", "pre", "pro", "post", "re", "sub"]
+        const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"]
         let poemLetterArray = this.poem.split("");
         let outputArray = [];
         if (poemLetterArray[poemLetterArray.length - 1] === "e" && poemLetterArray[poemLetterArray.length - 2] === "l" && (!vowelArray.includes(poemLetterArray[poemLetterArray.length - 3]))) {
@@ -20,6 +20,12 @@ export default class Haiku {
             outputArray.push(firstSyllable.join(""));
             outputArray.push(secondSyllable.join(""));
             return outputArray;
+        }
+
+        if ((poemLetterArray.slice(0, 3)).join("") === "pre") {
+            outputArray.push("pre");
+            poemLetterArray = poemLetterArray.slice(3);
+            console.log(poemLetterArray);
         }
 
         if (poemLetterArray.length > 5) {
@@ -60,7 +66,7 @@ export default class Haiku {
             if (vowelArray.includes(poemLetterArray[i]) && vowelArray.includes(poemLetterArray[i + 1])) {
                 let vowelPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
                 if (vowelTeams.includes(vowelPair)) {
-                    outputArray.push(this.poem);
+                    outputArray.push(poemLetterArray.join(""));
                     break;
                 } else {
                     let firstSyllable = poemLetterArray.slice(0, i + 1);

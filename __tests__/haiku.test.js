@@ -37,4 +37,8 @@ describe('Haiku.prototype.syllableChecker', () => {
         const prefixWord = new Haiku("dishonest");
         expect(prefixWord.syllableChecker()).toEqual(["dis", "ho", "nest"]);
     });
+    test('should recognize when a word begins with pre and split after pre', () => {
+        const preWord = new Haiku("prevail");
+        expect(preWord.syllableChecker()).toEqual(["pre", "vail"]);
+    });
 });
