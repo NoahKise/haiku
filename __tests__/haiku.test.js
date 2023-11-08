@@ -6,3 +6,11 @@ describe('Haiku', () => {
         expect(haiku.poem).toEqual("string");
     });
 });
+
+describe('Haiku.prototype.syllableChecker', () => {
+    test('should split a word between 2 consonants and return an array', () => {
+        const vowelArray = ["a", "e", "i", "o", "u"];
+        const haiku = new Haiku("robber");
+        expect(haiku.syllableChecker()).toEqual(["rob", "ber"])
+    });
+});
