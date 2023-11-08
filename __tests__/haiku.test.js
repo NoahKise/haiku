@@ -29,4 +29,8 @@ describe('Haiku.prototype.syllableChecker', () => {
         const vvWord = new Haiku("lion");
         expect(vvWord.syllableChecker()).toEqual(["li", "on"]);
     });
+    test('should recognize two team vowels and do not split between the vowels', () => {
+        const vvWord = new Haiku("naan");
+        expect(vvWord.syllableChecker()).toEqual(["naan"]);
+    });
 });
