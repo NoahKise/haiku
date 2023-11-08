@@ -16,6 +16,16 @@ export default class Haiku {
             return outputArray;
         }
         for (let i = 0; i < poemLetterArray.length; i++) {
+            if (vowelArray.includes(poemLetterArray[i]) && (!vowelArray.includes(poemLetterArray[i+1])) && vowelArray.includes(poemLetterArray[i+2])) {
+                let firstSyllable = poemLetterArray.slice(0, i + 1);
+                let secondSyllable = poemLetterArray.slice(i + 1);
+                outputArray.push(firstSyllable.join(""));
+                outputArray.push(secondSyllable.join(""));
+                console.log(outputArray);
+                break;
+            }
+
+
             if (!vowelArray.includes(poemLetterArray[i])) {
                 if (!vowelArray.includes(poemLetterArray[i + 1])) {
                     let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
