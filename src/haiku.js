@@ -26,19 +26,21 @@ export default class Haiku {
                 let secondSyllable = poemLetterArray.slice(i + 1);
                 outputArray.push(firstSyllable.join(""));
                 outputArray.push(secondSyllable.join(""));
+                console.log("youre here");
+                console.log(outputArray);
                 break;
             }
             if (!vowelArray.includes(poemLetterArray[i])) {
                 if (!vowelArray.includes(poemLetterArray[i + 1])) {
                     let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
                     if (digraphBlendArray.includes(conPair)) {
-                        outputArray.push(this.poem);
-                        break;
+                        continue;
                     } else {
                         let firstSyllable = poemLetterArray.slice(0, i + 1);
                         let secondSyllable = poemLetterArray.slice(i + 1);
                         outputArray.push(firstSyllable.join(""));
                         outputArray.push(secondSyllable.join(""));
+                        console.log("digraph else");
                         break;
                     }
                 }
@@ -47,17 +49,19 @@ export default class Haiku {
                 let vowelPair = (poemLetterArray[i] + poemLetterArray[i+1]).toString();
                 if (vowelTeams.includes(vowelPair)) {
                     outputArray.push(this.poem);
+                    console.log("vowel pair if");
                     break;
                 } else {
                     let firstSyllable = poemLetterArray.slice(0, i+1);
                     let secondSyllable = poemLetterArray.slice(i+1);
                     outputArray.push(firstSyllable.join(""));
                     outputArray.push(secondSyllable.join(""));
-                    console.log(outputArray);
+                    console.log("vowel pair else");
                     break;
                 }
             }
         }
+        console.log("at the end" + outputArray);
         return outputArray;
     }
 }

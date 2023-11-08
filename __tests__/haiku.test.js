@@ -33,4 +33,8 @@ describe('Haiku.prototype.syllableChecker', () => {
         const vvWord = new Haiku("naan");
         expect(vvWord.syllableChecker()).toEqual(["naan"]);
     });
+    test('should recognize when a word begins with a prefix and split after the prefix', () => {
+        const prefixWord = new Haiku("dishonest");
+        expect(prefixWord.syllableChecker()).toEqual(["dis", "honest"]);
+    })
 });
