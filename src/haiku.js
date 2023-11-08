@@ -5,20 +5,28 @@ export default class Haiku {
 
     syllableChecker() {
         const vowelArray = ["a", "e", "i", "o", "u"];
+        const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
         let poemLetterArray = this.poem.split("");
         let outputArray = [];
         for (let i = 0; i < poemLetterArray.length; i++) {
             if (!vowelArray.includes(poemLetterArray[i])) {
-                if (!vowelArray.includes(poemLetterArray[i+1])) {
-                    let firstSyllable = poemLetterArray.slice(0, i+1);
-                    let secondSyllable = poemLetterArray.slice(i+1);
-                    outputArray.push(firstSyllable.join(""));
-                    outputArray.push(secondSyllable.join(""));
-                    break;
+                if (!vowelArray.includes(poemLetterArray[i + 1])) {
+                    let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
+                    console.log(conPair);
+                    if (digraphBlendArray.includes(conPair)) {
+                        outputArray.push(this.poem);
+                        break;
+                    } else {
+                        let firstSyllable = poemLetterArray.slice(0, i + 1);
+                        let secondSyllable = poemLetterArray.slice(i + 1);
+                        outputArray.push(firstSyllable.join(""));
+                        outputArray.push(secondSyllable.join(""));
+                        break;
+                    }
                 }
-
-            }
+            } 
         }
+        console.log(outputArray);
         return outputArray;
     }
 }
