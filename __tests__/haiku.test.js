@@ -17,4 +17,8 @@ describe('Haiku.prototype.syllableChecker', () => {
         const digraphWord = new Haiku("chair");
         expect(digraphWord.syllableChecker()).toEqual(["chair"]);
     });
+    test('should recognize if a word ends in le, and if the letter directly preceding is a consonant. If so, split it before the last 3 letters', () => {
+        const leWord = new Haiku("table");
+        expect(leWord.syllableChecker()).toEqual(["ta", "ble"]);
+    });
 });

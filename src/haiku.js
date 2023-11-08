@@ -12,7 +12,6 @@ export default class Haiku {
             if (!vowelArray.includes(poemLetterArray[i])) {
                 if (!vowelArray.includes(poemLetterArray[i + 1])) {
                     let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
-                    console.log(conPair);
                     if (digraphBlendArray.includes(conPair)) {
                         outputArray.push(this.poem);
                         break;
@@ -26,7 +25,6 @@ export default class Haiku {
                 }
             } 
         }
-        console.log(outputArray);
         return outputArray;
     }
 }
