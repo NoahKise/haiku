@@ -11,6 +11,7 @@ export default class Haiku {
             "oa", "oe", "ue", "ui", "ou",
             "oo", "au", "ei", "eu", "oi", "oy", "ou"
         ];
+        const prefixArray = ["dis", "de", "mis", "pre", "pro", "post", "re", "sub"]
         let poemLetterArray = this.poem.split("");
         let outputArray = [];
         if (poemLetterArray[poemLetterArray.length - 1] === "e" && poemLetterArray[poemLetterArray.length - 2] === "l" && (!vowelArray.includes(poemLetterArray[poemLetterArray.length - 3]))) {
@@ -20,14 +21,26 @@ export default class Haiku {
             outputArray.push(secondSyllable.join(""));
             return outputArray;
         }
+
+        if (poemLetterArray.length > 5) {
+            let firstLetters = poemLetterArray.slice(0, 4);
+            console.log(firstLetters.join(""));
+            prefixArray.forEach((element) => {
+                if ((firstLetters.join("")).includes(element)) {
+                    outputArray.push(element);
+                    console.log(outputArray);
+                    poemLetterArray = poemLetterArray.slice(element.length);
+                    console.log(poemLetterArray);
+                }
+            });
+        }
+
         for (let i = 0; i < poemLetterArray.length; i++) {
             if (vowelArray.includes(poemLetterArray[i]) && (!vowelArray.includes(poemLetterArray[i + 1])) && vowelArray.includes(poemLetterArray[i + 2])) {
                 let firstSyllable = poemLetterArray.slice(0, i + 1);
                 let secondSyllable = poemLetterArray.slice(i + 1);
                 outputArray.push(firstSyllable.join(""));
                 outputArray.push(secondSyllable.join(""));
-                console.log("youre here");
-                console.log(outputArray);
                 break;
             }
             if (!vowelArray.includes(poemLetterArray[i])) {
@@ -40,28 +53,25 @@ export default class Haiku {
                         let secondSyllable = poemLetterArray.slice(i + 1);
                         outputArray.push(firstSyllable.join(""));
                         outputArray.push(secondSyllable.join(""));
-                        console.log("digraph else");
                         break;
                     }
                 }
             }
-            if (vowelArray.includes(poemLetterArray[i]) && vowelArray.includes(poemLetterArray[i+1])) {
-                let vowelPair = (poemLetterArray[i] + poemLetterArray[i+1]).toString();
+            if (vowelArray.includes(poemLetterArray[i]) && vowelArray.includes(poemLetterArray[i + 1])) {
+                let vowelPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
                 if (vowelTeams.includes(vowelPair)) {
                     outputArray.push(this.poem);
-                    console.log("vowel pair if");
                     break;
                 } else {
-                    let firstSyllable = poemLetterArray.slice(0, i+1);
-                    let secondSyllable = poemLetterArray.slice(i+1);
+                    let firstSyllable = poemLetterArray.slice(0, i + 1);
+                    let secondSyllable = poemLetterArray.slice(i + 1);
                     outputArray.push(firstSyllable.join(""));
                     outputArray.push(secondSyllable.join(""));
-                    console.log("vowel pair else");
                     break;
                 }
             }
         }
-        console.log("at the end" + outputArray);
+        console.log(outputArray);
         return outputArray;
     }
 }
