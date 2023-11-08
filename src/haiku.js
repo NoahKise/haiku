@@ -19,7 +19,6 @@ export default class Haiku {
 
             }
         }
-        console.log(outputArray);
         return outputArray;
     }
 }
