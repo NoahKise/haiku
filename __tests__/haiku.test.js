@@ -24,5 +24,9 @@ describe('Haiku.prototype.syllableChecker', () => {
     test('should recognize when a single consonant is between 2 vowels and split the word before the consonant', () => {
         const vcvWord = new Haiku("habit");
         expect(vcvWord.syllableChecker()).toEqual(["ha", "bit"]);
-    })
+    });
+    test('should recognize two non-team vowels and split between the vowels', () => {
+        const vvWord = new Haiku("lion");
+        expect(vvWord.syllableChecker()).toEqual(["li", "on"]);
+    });
 });

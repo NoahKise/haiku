@@ -21,7 +21,6 @@ export default class Haiku {
                 let secondSyllable = poemLetterArray.slice(i + 1);
                 outputArray.push(firstSyllable.join(""));
                 outputArray.push(secondSyllable.join(""));
-                console.log(outputArray);
                 break;
             }
 
