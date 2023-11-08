@@ -1,5 +1,5 @@
 export default class Haiku {
-    // constructor(poem) {
-    //     this.poem = poem;
+    constructor(poem) {
+        this.poem = poem;
     }
-// }
+}
