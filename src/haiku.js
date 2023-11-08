@@ -4,7 +4,7 @@ export default class Haiku {
     }
 
     syllableChecker() {
-        const vowelArray = ["a", "e", "i", "o", "u"];
+        const vowelArray = ["a", "e", "i", "o", "u", "y"];
         const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
         let poemLetterArray = this.poem.split("");
         let outputArray = [];

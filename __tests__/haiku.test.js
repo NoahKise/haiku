@@ -21,4 +21,8 @@ describe('Haiku.prototype.syllableChecker', () => {
         const leWord = new Haiku("table");
         expect(leWord.syllableChecker()).toEqual(["ta", "ble"]);
     });
+    test('should recognize when a single consonant is between 2 vowels and split the word before the consonant', () => {
+        const vcvWord = new Haiku("habit");
+        expect(vcvWord.syllableChecker()).toEqual(["ha", "bit"]);
+    })
 });
