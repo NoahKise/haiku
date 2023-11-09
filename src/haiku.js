@@ -1,6 +1,6 @@
 let outputArray = [];
 
-function cleCheck(wordArray) {
+export function cleCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
         // let firstSyllable = wordArray.slice(0, -3);
@@ -14,7 +14,7 @@ function cleCheck(wordArray) {
     }
 }
 
-export default class Haiku {
+export class Haiku {
     
     constructor(poem) {
         this.poem = poem; //right now poem is same as one word

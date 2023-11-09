@@ -1,4 +1,4 @@
-import Haiku from "../src/haiku.js";
+import { Haiku, cleCheck } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -11,6 +11,13 @@ describe('haikuWordArray()', () => {
     test('should split a word into array of letters', () => {
         const haiku = new Haiku("rob");
         expect(haiku.haikuWordArray()).toEqual(["r", "o", "b"]);
+    });
+});
+
+describe('cleCheck()', () => {
+    test('should recognize if a word array ends in le, and if the letter directly preceding is a consonant. If so, split it before the last 3 letters', () => {
+        const wordArray = ["t", "a", "b", "l", "e"];
+        expect(cleCheck(wordArray)).toEqual(["t", "a"]);
     });
 });
 
