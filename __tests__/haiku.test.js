@@ -139,4 +139,8 @@ describe('masterFunction()', () => {
         const poemArray = ["once", "upon", "a", "time"];
         expect(masterFunction(poemArray)).toEqual(5);
     });
+    test('should take testHaiku and run each word for a syllable count returning with total syllable count for poem', () => {
+        let testHaiku = new Haiku("a a a a a a a a a a a a a a a a a");
+        expect(masterFunction(testHaiku.haikuPoemArray())).toEqual(17);
+    });
 });
