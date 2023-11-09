@@ -3,18 +3,27 @@ let outputArray = [];
 export function wordSyllableCounter(wordArray) {
     outputArray = [];
     const check1 = cleCheck(wordArray);
+    console.log(check1);
     const check2 = preCheck(check1);
+    console.log(check2);
     const check3 = prefixCheck(check2);
-
+    console.log(check3);
     const check4 = vcvCheck(check3);
+    console.log(check4);
     const check5 = digraphCheck(check4);
+    console.log(check5);
     const check6 = vTeamCheck(check5);
-
+    console.log(check6);
     const check7 = vcvCheck(check6);
+    console.log(check7);
     const check8 = digraphCheck(check7);
+    console.log(check8);
     const check9 = vTeamCheck(check8);
+    console.log(check9);
     const check10 = vcvCheck(check9);
+    console.log(check10);
     const check11 = digraphCheck(check10);
+    console.log(check11);
     const check12 = vTeamCheck(check11);
     console.log(check12);
     console.log(outputArray);
@@ -63,6 +72,7 @@ export function prefixCheck(wordArray) {
         });
         return wordArray;
     }
+    return wordArray;
 }
 
 export function vcvCheck(wordArray) {
