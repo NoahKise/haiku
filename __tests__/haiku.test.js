@@ -67,6 +67,11 @@ describe("vTeamCheck()", () => {
         const wordArray = ["h", "o", "o", "t"];
         expect(vTeamCheck(wordArray)).toEqual(["h", "o", "o", "t"]);
     });
+    test('should recogize if an array has two adjacent vowels that are not a vowel team and split the array between those vowels', () => {
+        const wordArray = ["l", "i", "o", "n"];
+        expect(vTeamCheck(wordArray)).toEqual(["o", "n"]);
+    });
+
 });
 
 

@@ -1,7 +1,10 @@
 let outputArray = [];
 
-function wordSyllableCheck(wordArray) {
-    cleCheck(wordArray)
+function wordSyllableCounter(wordArray) {
+    cleCheck(wordArray);
+    preCheck(wordArray);
+    prefixCheck(wordArray);
+    
 }
 
 
