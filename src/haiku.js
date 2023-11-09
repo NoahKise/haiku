@@ -1,10 +1,24 @@
 let outputArray = [];
 
-function wordSyllableCounter(wordArray) {
-    cleCheck(wordArray);
-    preCheck(wordArray);
-    prefixCheck(wordArray);
-    
+export function wordSyllableCounter(wordArray) {
+    outputArray = [];
+    const check1 = cleCheck(wordArray);
+    const check2 = preCheck(check1);
+    const check3 = prefixCheck(check2);
+    const check4 = vcvCheck(check3);
+    const check5 = digraphCheck(check4);
+    const check6 = vTeamCheck(check5);
+    const check7 = vcvCheck(check6);
+    const check8 = digraphCheck(check7);
+    const check9 = vTeamCheck(check8);
+    const check10 = vcvCheck(check9);
+    const check11 = digraphCheck(check10);
+    const check12 = vTeamCheck(check11);
+    console.log(check12);
+    console.log(outputArray);
+    return outputArray;
+    // if check12 has 1 syll, push to output array
+    // run finalSyllCount(outputArray) gives us # for 1 word
 }
 
 
