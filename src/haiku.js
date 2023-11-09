@@ -3,9 +3,7 @@ let outputArray = [];
 export function cleCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
-        // let firstSyllable = wordArray.slice(0, -3);
         let lastSyllable = wordArray.slice(-3);
-        // outputArray.push(firstSyllable.join(""));
         outputArray.push(lastSyllable.join(""));
         wordArray = wordArray.slice(0, -3);
         return wordArray; //wordArray.next function();

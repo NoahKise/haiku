@@ -19,6 +19,10 @@ describe('cleCheck()', () => {
         const wordArray = ["t", "a", "b", "l", "e"];
         expect(cleCheck(wordArray)).toEqual(["t", "a"]);
     });
+    test('should return the original argument array if the last three letters of the argument array are not "consonant" + "l" + "e".', () => {
+        const wordArray = ["r", "o", "b"];
+        expect(cleCheck(wordArray)).toEqual(["r", "o", "b"]);
+    })
 });
 
 
