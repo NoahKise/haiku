@@ -42,15 +42,52 @@ export function vcvCheck(wordArray) {
             let keptSyllable = wordArray.slice(0, i + 1);
             outputArray.push(keptSyllable.join(""));
             wordArray = wordArray.slice(i + 1);
-            return wordArray;
-        } else {
-            return wordArray;
+        }
+    }
+    return wordArray;
+}
+
+export function digraphCheck(wordArray) {
+    const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
+    for (let i = 0; i < wordArray.length; i++) {
+        if (!vowelArray.includes(wordArray[i])) {
+            if (!vowelArray.includes(wordArray[i + 1])) {
+                let conPair = (wordArray[i] + wordArray[i + 1]).toString();
+                if (digraphBlendArray.includes(conPair)) {
+                    return wordArray;
+                } else {
+                    let firstSyllable = wordArray.slice(0, i + 1);
+                    outputArray.push(firstSyllable.join(""));
+                    wordArray = wordArray.slice(i + 1);
+                }
+            }
+        }
+    }
+    return wordArray;
+}
+
+export function vTeamCheck(wordArray) {
+    const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    const vowelTeams = ["ai", "aa", "ay", "ea", "ee", "ie", "oa", "oe", "ue", "ui", "ou", "oo", "au", "ei", "eu", "oi", "oy", "ou"
+    ];
+    for (let i = 0; i < wordArray.length; i++) {
+        if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
+            let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
+            if (vowelTeams.includes(vowelPair)) {
+                return wordArray;
+            } else {
+                let firstSyllable = wordArray.slice(0, i + 1);
+                outputArray.push(firstSyllable.join(""));
+                wordArray = wordArray.slice(i + 1);
+                break;
+            }
         }
     }
 }
 
 export class Haiku {
-    
+
     constructor(poem) {
         this.poem = poem; //right now poem is same as one word
     }
@@ -59,8 +96,8 @@ export class Haiku {
         let wordArray = this.poem.split('');
         return wordArray; //cleCheck(haikuWordArray());
     }
-    
-    
+
+
     // cleCheck(wordArray) {
     //     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     //     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
@@ -74,7 +111,7 @@ export class Haiku {
     //         return wordArray;
     //     }
     // }
-//---------------------------------------
+    //---------------------------------------
     syllableChecker() {
         const vowelArray = ["a", "e", "i", "o", "u", "y"];
         const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
@@ -84,7 +121,7 @@ export class Haiku {
             "oo", "au", "ei", "eu", "oi", "oy", "ou"
         ];
         const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
-        
+
 
         //Cle 
 

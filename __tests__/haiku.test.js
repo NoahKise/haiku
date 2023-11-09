@@ -1,4 +1,4 @@
-import { Haiku, cleCheck, preCheck, prefixCheck } from "../src/haiku.js";
+import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -30,12 +30,31 @@ describe('preCheck()', () => {
         const wordArray = ["p", "r", "e", "v", "a", "i", "l"];
         expect(preCheck(wordArray)).toEqual(["v", "a", "i", "l"]);
     });
+
+    test('should return original word array if word does not begin with pre', () => {
+        const wordArray = ["c", "a", "t"];
+        expect(preCheck(wordArray)).toEqual(["c", "a", "t"]);
+    });
 });
 
 describe('prefixCheck()', () => {
     test('should recognize when a word begins with a prefix and split after the prefix', () => {
         const wordArray = ["d", "i", "s", "o", "w", "n"];
         expect(prefixCheck(wordArray)).toEqual(["o", "w", "n"]);
+    });
+});
+
+describe('vcvCheck()', () => {
+    test('should recognize when a single consonant is between 2 vowels and split the word before the consonant', () => {
+        const wordArray = ["h", "a", "b", "i", "t"];
+        expect(vcvCheck(wordArray)).toEqual(["b", "i", "t"]);
+    });
+});
+
+describe('digraphCheck()', () => {
+    test('should recognize word with two consective consonent and not split if they are digraphs', () => {
+        const wordArray = ["s", "l", "e", "e", "p"];
+        expect(digraphCheck(wordArray)).toEqual(["s", "l", "e", "e", "p"]);
     });
 });
 
