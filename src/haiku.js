@@ -29,11 +29,9 @@ export function prefixCheck(wordArray) {
             if ((firstLetters.join("")).includes(element)) {
                 outputArray.push(element);
                 wordArray = wordArray.slice(element.length);
-                return wordArray;
-            } else {
-                return wordArray;
             }
         });
+        return wordArray;
     }
 }
 
@@ -41,11 +39,12 @@ export function vcvCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     for (let i = 0; i < wordArray.length; i++) {
         if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
-            let firstSyllable = wordArray.slice(0, i + 1);
-            // let secondSyllable = wordArray.slice(i + 1);
-            outputArray.push(firstSyllable.join(""));
-            // outputArray.push(secondSyllable.join(""));
+            let keptSyllable = wordArray.slice(0, i + 1);
+            outputArray.push(keptSyllable.join(""));
             wordArray = wordArray.slice(i + 1);
+            return wordArray;
+        } else {
+            return wordArray;
         }
     }
 }
