@@ -67,7 +67,7 @@ export function prefixCheck(wordArray) {
 
 export function vcvCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
-    if (wordArray.length !== 0) {
+    if (wordArray !== []) {
         for (let i = 0; i < wordArray.length; i++) {
             if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
                 let keptSyllable = wordArray.slice(0, i + 1);
@@ -83,7 +83,7 @@ export function vcvCheck(wordArray) {
 export function digraphCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
-    if (wordArray.length !== 0) {
+    if (wordArray !== []) {
         for (let i = 0; i < wordArray.length; i++) {
             if (!vowelArray.includes(wordArray[i])) {
                 if (!vowelArray.includes(wordArray[i + 1])) {
@@ -107,7 +107,7 @@ export function vTeamCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     const vowelTeams = ["ai", "aa", "ay", "ea", "ee", "ie", "oa", "oe", "ue", "ui", "ou", "oo", "au", "ei", "eu", "oi", "oy", "ou"
     ];
-    if (wordArray.length !== 0) {
+    if (wordArray !== []) {
         for (let i = 0; i < wordArray.length; i++) {
             if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
                 let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
@@ -125,11 +125,12 @@ export function vTeamCheck(wordArray) {
     return wordArray;
 }
 
-export function endsInY(wordArray) {
+export function endsInYCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
-    if (wordArray[-1] === "y" && (!vowelArray.includes(wordArray[-2]))) {
+    if (wordArray[wordArray.length-1] === "y" && (!vowelArray.includes(wordArray[wordArray.length-2]))) {
         outputArray.push(wordArray[-1]);
-        wordArray.slice(0, -1);
+        wordArray = wordArray.slice(0, -1);
+        return wordArray;
     }
     return wordArray;
 }
