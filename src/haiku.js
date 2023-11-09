@@ -1,8 +1,45 @@
+let outputArray = [];
+
+function cleCheck(wordArray) {
+    const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
+        // let firstSyllable = wordArray.slice(0, -3);
+        let lastSyllable = wordArray.slice(-3);
+        // outputArray.push(firstSyllable.join(""));
+        outputArray.push(lastSyllable.join(""));
+        wordArray = wordArray.slice(0, -3);
+        return wordArray; //wordArray.next function();
+    } else {
+        return wordArray;
+    }
+}
+
 export default class Haiku {
+    
     constructor(poem) {
-        this.poem = poem;
+        this.poem = poem; //right now poem is same as one word
     }
 
+    haikuWordArray() {
+        let wordArray = this.poem.split('');
+        return wordArray; //cleCheck(haikuWordArray());
+    }
+    
+    
+    // cleCheck(wordArray) {
+    //     const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    //     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
+    //         // let firstSyllable = wordArray.slice(0, -3);
+    //         let lastSyllable = wordArray.slice(-3);
+    //         // outputArray.push(firstSyllable.join(""));
+    //         outputArray.push(lastSyllable.join(""));
+    //         wordArray = wordArray.slice(0, -3);
+    //         return wordArray; //wordArray.next function();
+    //     } else {
+    //         return wordArray;
+    //     }
+    // }
+//---------------------------------------
     syllableChecker() {
         const vowelArray = ["a", "e", "i", "o", "u", "y"];
         const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
@@ -12,92 +49,92 @@ export default class Haiku {
             "oo", "au", "ei", "eu", "oi", "oy", "ou"
         ];
         const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"]
-        let poemLetterArray = this.poem.split("");
-        let outputArray = [];
+        
 
         //Cle 
 
-        if (poemLetterArray[poemLetterArray.length - 1] === "e" && poemLetterArray[poemLetterArray.length - 2] === "l" && (!vowelArray.includes(poemLetterArray[poemLetterArray.length - 3]))) {
-            // let firstSyllable = poemLetterArray.slice(0, -3);
-            let lastSyllable = poemLetterArray.slice(-3);
-            // outputArray.push(firstSyllable.join(""));
-            outputArray.push(lastSyllable.join(""));
-            poemLetterArray = poemLetterArray.slice(0, -3);
-        }
+        // if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
+        //     // let firstSyllable = wordArray.slice(0, -3);
+        //     let lastSyllable = wordArray.slice(-3);
+        //     // outputArray.push(firstSyllable.join(""));
+        //     outputArray.push(lastSyllable.join(""));
+        //     wordArray = wordArray.slice(0, -3);
+        // }
 
         //Pre
 
-        if ((poemLetterArray.slice(0, 3)).join("") === "pre") {
+        if ((wordArray.slice(0, 3)).join("") === "pre") {
             outputArray.push("pre");
-            poemLetterArray = poemLetterArray.slice(3);
+            wordArray = wordArray.slice(3);
         }
 
         //Prefix
 
-        if (poemLetterArray.length > 5) {
-            let firstLetters = poemLetterArray.slice(0, 4);
+        if (wordArray.length > 5) {
+            let firstLetters = wordArray.slice(0, 4);
             prefixArray.forEach((element) => {
                 if ((firstLetters.join("")).includes(element)) {
                     outputArray.push(element);
-                    poemLetterArray = poemLetterArray.slice(element.length);
+                    wordArray = wordArray.slice(element.length);
                 }
             });
         }
 
         //Entering Loop Starting With VCV
 
-        for (let i = 0; i < poemLetterArray.length; i++) {
-            if (vowelArray.includes(poemLetterArray[i]) && (!vowelArray.includes(poemLetterArray[i + 1])) && vowelArray.includes(poemLetterArray[i + 2])) {
-                let firstSyllable = poemLetterArray.slice(0, i + 1);
-                // let secondSyllable = poemLetterArray.slice(i + 1);
+        for (let i = 0; i < wordArray.length; i++) {
+            if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
+                let firstSyllable = wordArray.slice(0, i + 1);
+                // let secondSyllable = wordArray.slice(i + 1);
                 outputArray.push(firstSyllable.join(""));
                 // outputArray.push(secondSyllable.join(""));
-                poemLetterArray = poemLetterArray.slice(i + 1);
+                wordArray = wordArray.slice(i + 1);
             }
 
             //Digraph
 
 
-            if (!vowelArray.includes(poemLetterArray[i])) {
-                if (!vowelArray.includes(poemLetterArray[i + 1])) {
-                    let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
+            if (!vowelArray.includes(wordArray[i])) {
+                if (!vowelArray.includes(wordArray[i + 1])) {
+                    let conPair = (wordArray[i] + wordArray[i + 1]).toString();
                     if (digraphBlendArray.includes(conPair)) {
                         continue;
                     } else {
-                        let firstSyllable = poemLetterArray.slice(0, i + 1);
-                        // let secondSyllable = poemLetterArray.slice(i + 1);
+                        let firstSyllable = wordArray.slice(0, i + 1);
+                        // let secondSyllable = wordArray.slice(i + 1);
                         outputArray.push(firstSyllable.join(""));
                         // outputArray.push(secondSyllable.join(""));
-                        poemLetterArray = poemLetterArray.slice(i + 1);
+                        wordArray = wordArray.slice(i + 1);
                     }
                 }
             }
 
             //Vowel Teams
 
-            if (vowelArray.includes(poemLetterArray[i]) && vowelArray.includes(poemLetterArray[i + 1])) {
-                let vowelPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
+            if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
+                let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
                 if (vowelTeams.includes(vowelPair)) {
-                    outputArray.push(poemLetterArray.join(""));
-                    poemLetterArray = [];
+                    outputArray.push(wordArray.join(""));
+                    wordArray = [];
                     break;
                 } else {
-                    let firstSyllable = poemLetterArray.slice(0, i + 1);
-                    // let secondSyllable = poemLetterArray.slice(i + 1);
+                    let firstSyllable = wordArray.slice(0, i + 1);
+                    // let secondSyllable = wordArray.slice(i + 1);
                     outputArray.push(firstSyllable.join(""));
                     // outputArray.push(secondSyllable.join(""));
-                    poemLetterArray = poemLetterArray.slice(i + 1);
-                    // if (poemLetterArray.length !== 0) {
-                    //     outputArray.push(poemLetterArray.join(""));
-                    // poemLetterArray = [];
+                    wordArray = wordArray.slice(i + 1);
+                    // if (wordArray.length !== 0) {
+                    //     outputArray.push(wordArray.join(""));
+                    // wordArray = [];
                     // }
                     break;
                 }
             }
-        } if (poemLetterArray.length > 0) {
-            outputArray.push(poemLetterArray.join(""));
+        } if (wordArray.length > 0) {
+            outputArray.push(wordArray.join(""));
         }
-        console.log(poemLetterArray);
+        console.log(wordArray);
         return outputArray;
     }
 }
+
