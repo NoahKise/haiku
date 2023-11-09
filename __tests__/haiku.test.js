@@ -1,4 +1,4 @@
-import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck, vTeamCheck, wordSyllableCounter } from "../src/haiku.js";
+import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck, vTeamCheck, wordSyllableCounter, syllableCount } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -80,6 +80,12 @@ describe("wordSyllableCounter()", () => {
     });
 });
 
+describe("syllableCount()", () => {
+    test('should take syllable array and return length of array', () => {
+        const testOutputArray = ["rob", "ber"];
+        expect(syllableCount(testOutputArray)).toEqual(2);
+    });
+});
 
 // describe('Haiku.prototype.syllableChecker', () => {
 //     test('should split a word between 2 consonants and return an array', () => {

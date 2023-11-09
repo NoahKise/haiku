@@ -1,7 +1,7 @@
 let outputArray = [];
 
 export function wordSyllableCounter(wordArray) {
-    outputArray = [];
+    let outputArray = [];
     const check1 = cleCheck(wordArray);
     const check2 = preCheck(check1);
     const check3 = prefixCheck(check2);
@@ -19,6 +19,11 @@ export function wordSyllableCounter(wordArray) {
     return outputArray;
     // if check12 has 1 syll, push to output array
     // run finalSyllCount(outputArray) gives us # for 1 word
+}
+
+export function syllableCount(outputArray) {
+    let totalCount = outputArray.length;
+    return totalCount;
 }
 
 
