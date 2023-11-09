@@ -42,6 +42,10 @@ describe('prefixCheck()', () => {
         const wordArray = ["d", "i", "s", "o", "w", "n"];
         expect(prefixCheck(wordArray)).toEqual(["o", "w", "n"]);
     });
+    test('should recognize when a word does not begins with a prefix and return word', () => {
+        const wordArray = ["c", "l", "o", "w", "n", "s"];
+        expect(prefixCheck(wordArray)).toEqual(["c", "l", "o", "w", "n", "s"]);
+    });
 });
 
 describe('vcvCheck()', () => {
@@ -49,7 +53,7 @@ describe('vcvCheck()', () => {
         const wordArray = ["h", "a", "b", "i", "t"];
         expect(vcvCheck(wordArray)).toEqual(["b", "i", "t"]);
     });
-    test('if length of word array is 0, return word array', () => {
+    test('if length of word array is empty, return word array', () => {
         const wordArray = [];
         expect(vcvCheck(wordArray)).toEqual([]);
     });
@@ -103,6 +107,10 @@ describe("endsInYCheck()", () => {
     test('if word ends in "y", puts y in output array and returns word without "y"', () => {
         const wordArray = ["b", "a", "d", "l", "y"];
         expect(endsInYCheck(wordArray)).toEqual(["b", "a", "d", "l"]);
+    });
+    test('if word does not end in "y", return the word', () => {
+        const wordArray = ["b", "a", "d"];
+        expect(endsInYCheck(wordArray)).toEqual(["b", "a", "d"]);
     });
 });
 
