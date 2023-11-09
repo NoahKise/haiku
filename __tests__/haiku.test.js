@@ -135,4 +135,8 @@ describe('masterFunction()', () => {
         const poemArray = ["robber", "lion", "sleeps"];
         expect(masterFunction(poemArray)).toEqual(5);
     });
+    test('should take poemArray and run each word for a syllable count returning with total syllable count for poem', () => {
+        const poemArray = ["once", "upon", "a", "time"];
+        expect(masterFunction(poemArray)).toEqual(5);
+    });
 });

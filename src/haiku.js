@@ -20,9 +20,8 @@ export function wordSyllableCounter(wordArray) {
     const check2 = prefixCheck(check1);
     const check3 = cleCheck(check2);
     const check4 = vTeamCheck(check3);
-    const check5 = digraphCheck(check4);
-    const check6 = vcvCheck(check5);
-    
+    const check5 = vcvCheck(check4);
+    const check6 = digraphCheck(check5);
     const check7 = vcvCheck(check6);
     const check8 = digraphCheck(check7);
     const check9 = vTeamCheck(check8);
@@ -100,16 +99,18 @@ export function digraphCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
     if (Array.isArray(wordArray) && wordArray.length > 0) {
-        for (let i = 0; i < wordArray.length; i++) {
-            if (!vowelArray.includes(wordArray[i])) {
-                if (!vowelArray.includes(wordArray[i + 1])) {
-                    let conPair = (wordArray[i] + wordArray[i + 1]).toString();
-                    if (digraphBlendArray.includes(conPair)) {
-                        return wordArray;
-                    } else {
-                        let keptSyllable = wordArray.slice(0, i + 1);
-                        outputArray.push(keptSyllable.join(""));
-                        wordArray = wordArray.slice(i + 1);
+        if (wordArray[wordArray.length - 1] !== "e") {
+            for (let i = 0; i < wordArray.length; i++) {
+                if (!vowelArray.includes(wordArray[i])) {
+                    if (!vowelArray.includes(wordArray[i + 1])) {
+                        let conPair = (wordArray[i] + wordArray[i + 1]).toString();
+                        if (digraphBlendArray.includes(conPair)) {
+                            return wordArray;
+                        } else {
+                            let keptSyllable = wordArray.slice(0, i + 1);
+                            outputArray.push(keptSyllable.join(""));
+                            wordArray = wordArray.slice(i + 1);
+                        }
                     }
                 }
             }
@@ -167,5 +168,5 @@ export class Haiku {
     //     return wordArray;
     // }
 
-    
+
 }
