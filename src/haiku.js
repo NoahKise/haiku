@@ -11,6 +11,44 @@ export function cleCheck(wordArray) {
         return wordArray;
     }
 }
+export function preCheck(wordArray) {
+    if ((wordArray.slice(0, 3)).join("") === "pre") {
+        outputArray.push("pre");
+        wordArray = wordArray.slice(3);
+        return wordArray;
+    } else {
+        return wordArray;
+    }
+}
+
+export function prefixCheck(wordArray) {
+    const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
+    if (wordArray.length > 5) {
+        let firstLetters = wordArray.slice(0, 4);
+        prefixArray.forEach((element) => {
+            if ((firstLetters.join("")).includes(element)) {
+                outputArray.push(element);
+                wordArray = wordArray.slice(element.length);
+                return wordArray;
+            } else {
+                return wordArray;
+            }
+        });
+    }
+}
+
+export function vcvCheck(wordArray) {
+    const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    for (let i = 0; i < wordArray.length; i++) {
+        if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
+            let firstSyllable = wordArray.slice(0, i + 1);
+            // let secondSyllable = wordArray.slice(i + 1);
+            outputArray.push(firstSyllable.join(""));
+            // outputArray.push(secondSyllable.join(""));
+            wordArray = wordArray.slice(i + 1);
+        }
+    }
+}
 
 export class Haiku {
     
@@ -46,7 +84,7 @@ export class Haiku {
             "oa", "oe", "ue", "ui", "ou",
             "oo", "au", "ei", "eu", "oi", "oy", "ou"
         ];
-        const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"]
+        const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
         
 
         //Cle 
@@ -61,10 +99,10 @@ export class Haiku {
 
         //Pre
 
-        if ((wordArray.slice(0, 3)).join("") === "pre") {
-            outputArray.push("pre");
-            wordArray = wordArray.slice(3);
-        }
+        // if ((wordArray.slice(0, 3)).join("") === "pre") {
+        //     outputArray.push("pre");
+        //     wordArray = wordArray.slice(3);
+        // }
 
         //Prefix
 

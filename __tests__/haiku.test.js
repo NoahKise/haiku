@@ -1,4 +1,4 @@
-import { Haiku, cleCheck } from "../src/haiku.js";
+import { Haiku, cleCheck, preCheck, prefixCheck } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -23,6 +23,20 @@ describe('cleCheck()', () => {
         const wordArray = ["r", "o", "b"];
         expect(cleCheck(wordArray)).toEqual(["r", "o", "b"]);
     })
+});
+
+describe('preCheck()', () => {
+    test('should recognize when a word begins with pre and split after pre', () => {
+        const wordArray = ["p", "r", "e", "v", "a", "i", "l"];
+        expect(preCheck(wordArray)).toEqual(["v", "a", "i", "l"]);
+    });
+});
+
+describe('prefixCheck()', () => {
+    test('should recognize when a word begins with a prefix and split after the prefix', () => {
+        const wordArray = ["d", "i", "s", "o", "w", "n"];
+        expect(prefixCheck(wordArray)).toEqual(["o", "w", "n"]);
+    });
 });
 
 
