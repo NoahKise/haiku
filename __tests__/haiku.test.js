@@ -19,7 +19,7 @@ describe('Haiku.prototype.syllableChecker', () => {
     });
     test('should recognize if a word ends in le, and if the letter directly preceding is a consonant. If so, split it before the last 3 letters', () => {
         const leWord = new Haiku("table");
-        expect(leWord.syllableChecker()).toEqual(["ta", "ble"]);
+        expect(leWord.syllableChecker()).toEqual(["ble", "ta"]);
     });
     test('should recognize when a single consonant is between 2 vowels and split the word before the consonant', () => {
         const vcvWord = new Haiku("habit");

@@ -14,41 +14,50 @@ export default class Haiku {
         const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"]
         let poemLetterArray = this.poem.split("");
         let outputArray = [];
+
+        //Cle 
+
         if (poemLetterArray[poemLetterArray.length - 1] === "e" && poemLetterArray[poemLetterArray.length - 2] === "l" && (!vowelArray.includes(poemLetterArray[poemLetterArray.length - 3]))) {
-            let firstSyllable = poemLetterArray.slice(0, -3);
-            let secondSyllable = poemLetterArray.slice(-3);
-            outputArray.push(firstSyllable.join(""));
-            outputArray.push(secondSyllable.join(""));
-            return outputArray;
+            // let firstSyllable = poemLetterArray.slice(0, -3);
+            let lastSyllable = poemLetterArray.slice(-3);
+            // outputArray.push(firstSyllable.join(""));
+            outputArray.push(lastSyllable.join(""));
+            poemLetterArray = poemLetterArray.slice(0, -3);
         }
+
+        //Pre
 
         if ((poemLetterArray.slice(0, 3)).join("") === "pre") {
             outputArray.push("pre");
             poemLetterArray = poemLetterArray.slice(3);
-            console.log(poemLetterArray);
         }
+
+        //Prefix
 
         if (poemLetterArray.length > 5) {
             let firstLetters = poemLetterArray.slice(0, 4);
-            console.log(firstLetters.join(""));
             prefixArray.forEach((element) => {
                 if ((firstLetters.join("")).includes(element)) {
                     outputArray.push(element);
-                    console.log(outputArray);
                     poemLetterArray = poemLetterArray.slice(element.length);
-                    console.log(poemLetterArray);
                 }
             });
         }
 
+        //Entering Loop Starting With VCV
+
         for (let i = 0; i < poemLetterArray.length; i++) {
             if (vowelArray.includes(poemLetterArray[i]) && (!vowelArray.includes(poemLetterArray[i + 1])) && vowelArray.includes(poemLetterArray[i + 2])) {
                 let firstSyllable = poemLetterArray.slice(0, i + 1);
-                let secondSyllable = poemLetterArray.slice(i + 1);
+                // let secondSyllable = poemLetterArray.slice(i + 1);
                 outputArray.push(firstSyllable.join(""));
-                outputArray.push(secondSyllable.join(""));
-                break;
+                // outputArray.push(secondSyllable.join(""));
+                poemLetterArray = poemLetterArray.slice(i + 1);
             }
+
+            //Digraph
+
+
             if (!vowelArray.includes(poemLetterArray[i])) {
                 if (!vowelArray.includes(poemLetterArray[i + 1])) {
                     let conPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
@@ -56,28 +65,39 @@ export default class Haiku {
                         continue;
                     } else {
                         let firstSyllable = poemLetterArray.slice(0, i + 1);
-                        let secondSyllable = poemLetterArray.slice(i + 1);
+                        // let secondSyllable = poemLetterArray.slice(i + 1);
                         outputArray.push(firstSyllable.join(""));
-                        outputArray.push(secondSyllable.join(""));
-                        break;
+                        // outputArray.push(secondSyllable.join(""));
+                        poemLetterArray = poemLetterArray.slice(i + 1);
                     }
                 }
             }
+
+            //Vowel Teams
+
             if (vowelArray.includes(poemLetterArray[i]) && vowelArray.includes(poemLetterArray[i + 1])) {
                 let vowelPair = (poemLetterArray[i] + poemLetterArray[i + 1]).toString();
                 if (vowelTeams.includes(vowelPair)) {
                     outputArray.push(poemLetterArray.join(""));
+                    poemLetterArray = [];
                     break;
                 } else {
                     let firstSyllable = poemLetterArray.slice(0, i + 1);
-                    let secondSyllable = poemLetterArray.slice(i + 1);
+                    // let secondSyllable = poemLetterArray.slice(i + 1);
                     outputArray.push(firstSyllable.join(""));
-                    outputArray.push(secondSyllable.join(""));
+                    // outputArray.push(secondSyllable.join(""));
+                    poemLetterArray = poemLetterArray.slice(i + 1);
+                    // if (poemLetterArray.length !== 0) {
+                    //     outputArray.push(poemLetterArray.join(""));
+                    // poemLetterArray = [];
+                    // }
                     break;
                 }
             }
+        } if (poemLetterArray.length > 0) {
+            outputArray.push(poemLetterArray.join(""));
         }
-        console.log(outputArray);
+        console.log(poemLetterArray);
         return outputArray;
     }
 }
