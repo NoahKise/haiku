@@ -56,6 +56,10 @@ describe('digraphCheck()', () => {
         const wordArray = ["s", "l", "e", "e", "p"];
         expect(digraphCheck(wordArray)).toEqual(["s", "l", "e", "e", "p"]);
     });
+    test('should recognize word with two consective consonent and split if they are not digraphs', () => {
+        const wordArray = ["r", "o", "b", "b", "e", "r"];
+        expect(digraphCheck(wordArray)).toEqual(["b", "e", "r"]);
+    });
 });
 
 

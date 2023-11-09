@@ -57,8 +57,8 @@ export function digraphCheck(wordArray) {
                 if (digraphBlendArray.includes(conPair)) {
                     return wordArray;
                 } else {
-                    let firstSyllable = wordArray.slice(0, i + 1);
-                    outputArray.push(firstSyllable.join(""));
+                    let keptSyllable = wordArray.slice(0, i + 1);
+                    outputArray.push(keptSyllable.join(""));
                     wordArray = wordArray.slice(i + 1);
                 }
             }
@@ -77,13 +77,13 @@ export function vTeamCheck(wordArray) {
             if (vowelTeams.includes(vowelPair)) {
                 return wordArray;
             } else {
-                let firstSyllable = wordArray.slice(0, i + 1);
-                outputArray.push(firstSyllable.join(""));
+                let keptSyllable = wordArray.slice(0, i + 1);
+                outputArray.push(keptSyllable.join(""));
                 wordArray = wordArray.slice(i + 1);
-                break;
             }
         }
     }
+    return wordArray;
 }
 
 export class Haiku {
@@ -101,9 +101,9 @@ export class Haiku {
     // cleCheck(wordArray) {
     //     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     //     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
-    //         // let firstSyllable = wordArray.slice(0, -3);
+    //         // let keptSyllable = wordArray.slice(0, -3);
     //         let lastSyllable = wordArray.slice(-3);
-    //         // outputArray.push(firstSyllable.join(""));
+    //         // outputArray.push(keptSyllable.join(""));
     //         outputArray.push(lastSyllable.join(""));
     //         wordArray = wordArray.slice(0, -3);
     //         return wordArray; //wordArray.next function();
@@ -126,9 +126,9 @@ export class Haiku {
         //Cle 
 
         // if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
-        //     // let firstSyllable = wordArray.slice(0, -3);
+        //     // let keptSyllable = wordArray.slice(0, -3);
         //     let lastSyllable = wordArray.slice(-3);
-        //     // outputArray.push(firstSyllable.join(""));
+        //     // outputArray.push(keptSyllable.join(""));
         //     outputArray.push(lastSyllable.join(""));
         //     wordArray = wordArray.slice(0, -3);
         // }
@@ -156,9 +156,9 @@ export class Haiku {
 
         for (let i = 0; i < wordArray.length; i++) {
             if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
-                let firstSyllable = wordArray.slice(0, i + 1);
+                let keptSyllable = wordArray.slice(0, i + 1);
                 // let secondSyllable = wordArray.slice(i + 1);
-                outputArray.push(firstSyllable.join(""));
+                outputArray.push(keptSyllable.join(""));
                 // outputArray.push(secondSyllable.join(""));
                 wordArray = wordArray.slice(i + 1);
             }
@@ -172,9 +172,9 @@ export class Haiku {
                     if (digraphBlendArray.includes(conPair)) {
                         continue;
                     } else {
-                        let firstSyllable = wordArray.slice(0, i + 1);
+                        let keptSyllable = wordArray.slice(0, i + 1);
                         // let secondSyllable = wordArray.slice(i + 1);
-                        outputArray.push(firstSyllable.join(""));
+                        outputArray.push(keptSyllable.join(""));
                         // outputArray.push(secondSyllable.join(""));
                         wordArray = wordArray.slice(i + 1);
                     }
@@ -190,9 +190,9 @@ export class Haiku {
                     wordArray = [];
                     break;
                 } else {
-                    let firstSyllable = wordArray.slice(0, i + 1);
+                    let keptSyllable = wordArray.slice(0, i + 1);
                     // let secondSyllable = wordArray.slice(i + 1);
-                    outputArray.push(firstSyllable.join(""));
+                    outputArray.push(keptSyllable.join(""));
                     // outputArray.push(secondSyllable.join(""));
                     wordArray = wordArray.slice(i + 1);
                     // if (wordArray.length !== 0) {
