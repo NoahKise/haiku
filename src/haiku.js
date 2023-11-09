@@ -1,5 +1,9 @@
 let outputArray = [];
 
+// function masterFunction(poemArray) {
+//     for (let i = 0; )
+// }
+
 export function wordSyllableCounter(wordArray) {
     outputArray = [];
     const check1 = preCheck(wordArray);
@@ -33,17 +37,13 @@ export function wordSyllableCounter(wordArray) {
         outputArray.push(check13.join(""));
     }
     return outputArray;
-
-    // if check12 has 1 syll, push to output array
-    // run finalSyllCount(outputArray) gives us # for 1 word
 }
 
 export function syllableCount(outputArray) {
-    let totalCount = outputArray.length;
+    let totalCount = 0;
+    totalCount += outputArray.length;
     return totalCount;
 }
-
-
 
 export function cleCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
@@ -67,7 +67,7 @@ export function preCheck(wordArray) {
 }
 
 export function prefixCheck(wordArray) {
-    const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
+    const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub", "cyc"];
     if (wordArray.length > 5) {
         let firstLetters = wordArray.slice(0, 4);
         prefixArray.forEach((element) => {
@@ -162,5 +162,10 @@ export class Haiku {
     haikuWordArray() {
         let wordArray = this.poem.split('');
         return wordArray;
+    }
+
+    haikuPoemArray() {
+        let poemArray = (this.poem).toLowerCase().split(" ");
+        return poemArray;
     }
 }

@@ -14,6 +14,13 @@ describe('haikuWordArray()', () => {
     });
 });
 
+describe('haikuPoemArray()', () => {
+    test('should split a poem into array of words', () => {
+        const haiku = new Haiku("Once upon a time");
+        expect(haiku.haikuPoemArray()).toEqual(["once", "upon", "a", "time"]);
+    });
+});
+
 describe('cleCheck()', () => {
     test('should recognize if a word array ends in le, and if the letter directly preceding is a consonant. If so, split it before the last 3 letters', () => {
         const wordArray = ["t", "a", "b", "l", "e"];
