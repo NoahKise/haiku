@@ -1,13 +1,15 @@
 let outputArray = [];
 
 export function wordSyllableCounter(wordArray) {
-    let outputArray = [];
+    outputArray = [];
     const check1 = cleCheck(wordArray);
     const check2 = preCheck(check1);
     const check3 = prefixCheck(check2);
+
     const check4 = vcvCheck(check3);
     const check5 = digraphCheck(check4);
     const check6 = vTeamCheck(check5);
+
     const check7 = vcvCheck(check6);
     const check8 = digraphCheck(check7);
     const check9 = vTeamCheck(check8);
@@ -65,12 +67,15 @@ export function prefixCheck(wordArray) {
 
 export function vcvCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
-    for (let i = 0; i < wordArray.length; i++) {
-        if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
-            let keptSyllable = wordArray.slice(0, i + 1);
-            outputArray.push(keptSyllable.join(""));
-            wordArray = wordArray.slice(i + 1);
+    if (wordArray.length !== 0) {
+        for (let i = 0; i < wordArray.length; i++) {
+            if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
+                let keptSyllable = wordArray.slice(0, i + 1);
+                outputArray.push(keptSyllable.join(""));
+                wordArray = wordArray.slice(i + 1);
+            }
         }
+        return wordArray;
     }
     return wordArray;
 }
@@ -78,19 +83,22 @@ export function vcvCheck(wordArray) {
 export function digraphCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
-    for (let i = 0; i < wordArray.length; i++) {
-        if (!vowelArray.includes(wordArray[i])) {
-            if (!vowelArray.includes(wordArray[i + 1])) {
-                let conPair = (wordArray[i] + wordArray[i + 1]).toString();
-                if (digraphBlendArray.includes(conPair)) {
-                    return wordArray;
-                } else {
-                    let keptSyllable = wordArray.slice(0, i + 1);
-                    outputArray.push(keptSyllable.join(""));
-                    wordArray = wordArray.slice(i + 1);
+    if (wordArray.length !== 0) {
+        for (let i = 0; i < wordArray.length; i++) {
+            if (!vowelArray.includes(wordArray[i])) {
+                if (!vowelArray.includes(wordArray[i + 1])) {
+                    let conPair = (wordArray[i] + wordArray[i + 1]).toString();
+                    if (digraphBlendArray.includes(conPair)) {
+                        return wordArray;
+                    } else {
+                        let keptSyllable = wordArray.slice(0, i + 1);
+                        outputArray.push(keptSyllable.join(""));
+                        wordArray = wordArray.slice(i + 1);
+                    }
                 }
             }
         }
+        return wordArray;
     }
     return wordArray;
 }
@@ -99,17 +107,29 @@ export function vTeamCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     const vowelTeams = ["ai", "aa", "ay", "ea", "ee", "ie", "oa", "oe", "ue", "ui", "ou", "oo", "au", "ei", "eu", "oi", "oy", "ou"
     ];
-    for (let i = 0; i < wordArray.length; i++) {
-        if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
-            let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
-            if (vowelTeams.includes(vowelPair)) {
-                return wordArray;
-            } else {
-                let keptSyllable = wordArray.slice(0, i + 1);
-                outputArray.push(keptSyllable.join(""));
-                wordArray = wordArray.slice(i + 1);
+    if (wordArray.length !== 0) {
+        for (let i = 0; i < wordArray.length; i++) {
+            if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
+                let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
+                if (vowelTeams.includes(vowelPair)) {
+                    return wordArray;
+                } else {
+                    let keptSyllable = wordArray.slice(0, i + 1);
+                    outputArray.push(keptSyllable.join(""));
+                    wordArray = wordArray.slice(i + 1);
+                }
             }
         }
+        return wordArray;
+    }
+    return wordArray;
+}
+
+export function endsInY(wordArray) {
+    const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    if (wordArray[-1] === "y" && (!vowelArray.includes(wordArray[-2]))) {
+        outputArray.push(wordArray[-1]);
+        wordArray.slice(0, -1);
     }
     return wordArray;
 }

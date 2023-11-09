@@ -49,6 +49,10 @@ describe('vcvCheck()', () => {
         const wordArray = ["h", "a", "b", "i", "t"];
         expect(vcvCheck(wordArray)).toEqual(["b", "i", "t"]);
     });
+    test('if length of word array is 0, return word array', () => {
+        const wordArray = [];
+        expect(vcvCheck(wordArray)).toEqual([]);
+    });
 });
 
 describe('digraphCheck()', () => {
@@ -60,6 +64,10 @@ describe('digraphCheck()', () => {
         const wordArray = ["r", "o", "b", "b", "e", "r"];
         expect(digraphCheck(wordArray)).toEqual(["b", "e", "r"]);
     });
+    test('if length of word array is 0, return word array', () => {
+        const wordArray = [];
+        expect(digraphCheck(wordArray)).toEqual([]);
+    });
 });
 
 describe("vTeamCheck()", () => {
@@ -70,6 +78,10 @@ describe("vTeamCheck()", () => {
     test('should recogize if an array has two adjacent vowels that are not a vowel team and split the array between those vowels', () => {
         const wordArray = ["l", "i", "o", "n"];
         expect(vTeamCheck(wordArray)).toEqual(["o", "n"]);
+    });
+    test('if length of word array is 0, return word array', () => {
+        const wordArray = [];
+        expect(vTeamCheck(wordArray)).toEqual([]);
     });
 });
 
