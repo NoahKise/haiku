@@ -1,37 +1,35 @@
 let outputArray = [];
 
-// function masterFunction(poemArray) {
-//     for (let i = 0; )
-// }
+export function masterFunction(poemArray) {
+    let sylTotal = 0;
+    for (const word of poemArray) {
+        let lettersArray = word.split("");
+        let sylArray = wordSyllableCounter(lettersArray);
+        console.log(sylArray);
+        let sylCount = syllableCount(sylArray);
+        sylTotal += sylCount;
+    }
+    console.log(sylTotal);
+    return sylTotal;
+}
 
 export function wordSyllableCounter(wordArray) {
     outputArray = [];
+
     const check1 = preCheck(wordArray);
-    console.log(check1);
     const check2 = prefixCheck(check1);
-    console.log(check2);
     const check3 = cleCheck(check2);
-    console.log(check3);
-    const check4 = vcvCheck(check3);
-    console.log(check4);
+    const check4 = vTeamCheck(check3);
     const check5 = digraphCheck(check4);
-    console.log(check5);
-    const check6 = vTeamCheck(check5);
-    console.log(check6);
+    const check6 = vcvCheck(check5);
+    
     const check7 = vcvCheck(check6);
-    console.log(check7);
     const check8 = digraphCheck(check7);
-    console.log(check8);
     const check9 = vTeamCheck(check8);
-    console.log(check9);
     const check10 = vcvCheck(check9);
-    console.log(check10);
     const check11 = digraphCheck(check10);
-    console.log(check11);
     const check12 = vTeamCheck(check11);
-    console.log(check12);
     const check13 = endsInYCheck(check12);
-    console.log(check13);
 
     if (check13.length > 0) {
         outputArray.push(check13.join(""));
@@ -159,13 +157,15 @@ export class Haiku {
         this.poem = poem; //right now poem is same as one word
     }
 
-    haikuWordArray() {
-        let wordArray = this.poem.split('');
-        return wordArray;
-    }
-
     haikuPoemArray() {
         let poemArray = (this.poem).toLowerCase().split(" ");
         return poemArray;
     }
+
+    // haikuWordArray(words) {
+    //     let wordArray = words.split("")
+    //     return wordArray;
+    // }
+
+    
 }

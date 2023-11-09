@@ -1,4 +1,4 @@
-import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck, vTeamCheck, wordSyllableCounter, syllableCount, endsInYCheck } from "../src/haiku.js";
+import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck, vTeamCheck, wordSyllableCounter, syllableCount, endsInYCheck, masterFunction } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -7,15 +7,15 @@ describe('Haiku', () => {
     });
 });
 
-describe('haikuWordArray()', () => {
-    test('should split a word into array of letters', () => {
-        const haiku = new Haiku("rob");
-        expect(haiku.haikuWordArray()).toEqual(["r", "o", "b"]);
-    });
-});
+// describe('haikuWordArray()', () => {
+//     test('should split a word into array of letters', () => {
+//         const haiku = new Haiku("rob");
+//         expect(haiku.haikuWordArray()).toEqual(["r", "o", "b"]);
+//     });
+// });
 
 describe('haikuPoemArray()', () => {
-    test('should split a poem into array of words', () => {
+    test('should split a poem into array of words, despite case', () => {
         const haiku = new Haiku("Once upon a time");
         expect(haiku.haikuPoemArray()).toEqual(["once", "upon", "a", "time"]);
     });
@@ -127,5 +127,12 @@ describe("endsInYCheck()", () => {
     test('if word does not end in "y", return the word', () => {
         const wordArray = ["b", "a", "d"];
         expect(endsInYCheck(wordArray)).toEqual(["b", "a", "d"]);
+    });
+});
+
+describe('masterFunction()', () => {
+    test('should take poemArray and run each word for a syllable count returning with total syllable count for poem', () => {
+        const poemArray = ["robber", "lion", "sleeps"];
+        expect(masterFunction(poemArray)).toEqual(5);
     });
 });
