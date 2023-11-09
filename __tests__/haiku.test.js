@@ -1,4 +1,4 @@
-import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck } from "../src/haiku.js";
+import { Haiku, cleCheck, digraphCheck, preCheck, prefixCheck, vcvCheck, vTeamCheck } from "../src/haiku.js";
 
 describe('Haiku', () => {
     test('should create an object with 1 property that is a string', () => {
@@ -59,6 +59,13 @@ describe('digraphCheck()', () => {
     test('should recognize word with two consective consonent and split if they are not digraphs', () => {
         const wordArray = ["r", "o", "b", "b", "e", "r"];
         expect(digraphCheck(wordArray)).toEqual(["b", "e", "r"]);
+    });
+});
+
+describe("vTeamCheck()", () => {
+    test('should recogize if an array has two adjacent vowels that are a vowel team and not split the array between those vowels', () => {
+        const wordArray = ["h", "o", "o", "t"];
+        expect(vTeamCheck(wordArray)).toEqual(["h", "o", "o", "t"]);
     });
 });
 

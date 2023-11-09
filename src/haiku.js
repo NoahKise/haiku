@@ -1,5 +1,11 @@
 let outputArray = [];
 
+function wordSyllableCheck(wordArray) {
+    cleCheck(wordArray)
+}
+
+
+
 export function cleCheck(wordArray) {
     const vowelArray = ["a", "e", "i", "o", "u", "y"];
     if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
@@ -112,101 +118,100 @@ export class Haiku {
     //     }
     // }
     //---------------------------------------
-    syllableChecker() {
-        const vowelArray = ["a", "e", "i", "o", "u", "y"];
-        const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
-        const vowelTeams = [
-            "ai", "aa", "ay", "ea", "ee", "ie",
-            "oa", "oe", "ue", "ui", "ou",
-            "oo", "au", "ei", "eu", "oi", "oy", "ou"
-        ];
-        const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
+    // syllableChecker() {
+    //     const vowelArray = ["a", "e", "i", "o", "u", "y"];
+    //     const digraphBlendArray = ["bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"];
+    //     const vowelTeams = [
+    //         "ai", "aa", "ay", "ea", "ee", "ie",
+    //         "oa", "oe", "ue", "ui", "ou",
+    //         "oo", "au", "ei", "eu", "oi", "oy", "ou"
+    //     ];
+    //     const prefixArray = ["dis", "de", "mis", "pro", "post", "re", "sub"];
 
 
-        //Cle 
+    //Cle
 
-        // if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
-        //     // let keptSyllable = wordArray.slice(0, -3);
-        //     let lastSyllable = wordArray.slice(-3);
-        //     // outputArray.push(keptSyllable.join(""));
-        //     outputArray.push(lastSyllable.join(""));
-        //     wordArray = wordArray.slice(0, -3);
-        // }
+    // if (wordArray[wordArray.length - 1] === "e" && wordArray[wordArray.length - 2] === "l" && (!vowelArray.includes(wordArray[wordArray.length - 3]))) {
+    //     // let keptSyllable = wordArray.slice(0, -3);
+    //     let lastSyllable = wordArray.slice(-3);
+    //     // outputArray.push(keptSyllable.join(""));
+    //     outputArray.push(lastSyllable.join(""));
+    //     wordArray = wordArray.slice(0, -3);
+    // }
 
-        //Pre
+    //Pre
 
-        // if ((wordArray.slice(0, 3)).join("") === "pre") {
-        //     outputArray.push("pre");
-        //     wordArray = wordArray.slice(3);
-        // }
+    // if ((wordArray.slice(0, 3)).join("") === "pre") {
+    //     outputArray.push("pre");
+    //     wordArray = wordArray.slice(3);
+    // }
 
-        //Prefix
+    //Prefix
 
-        if (wordArray.length > 5) {
-            let firstLetters = wordArray.slice(0, 4);
-            prefixArray.forEach((element) => {
-                if ((firstLetters.join("")).includes(element)) {
-                    outputArray.push(element);
-                    wordArray = wordArray.slice(element.length);
-                }
-            });
-        }
+    // if (wordArray.length > 5) {
+    //     let firstLetters = wordArray.slice(0, 4);
+    //     prefixArray.forEach((element) => {
+    //         if ((firstLetters.join("")).includes(element)) {
+    //             outputArray.push(element);
+    //             wordArray = wordArray.slice(element.length);
+    //         }
+    //     });
+    // }
 
-        //Entering Loop Starting With VCV
+    //Entering Loop Starting With VCV
 
-        for (let i = 0; i < wordArray.length; i++) {
-            if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
-                let keptSyllable = wordArray.slice(0, i + 1);
-                // let secondSyllable = wordArray.slice(i + 1);
-                outputArray.push(keptSyllable.join(""));
-                // outputArray.push(secondSyllable.join(""));
-                wordArray = wordArray.slice(i + 1);
-            }
+    // for (let i = 0; i < wordArray.length; i++) {
+    //     if (vowelArray.includes(wordArray[i]) && (!vowelArray.includes(wordArray[i + 1])) && vowelArray.includes(wordArray[i + 2])) {
+    //         let keptSyllable = wordArray.slice(0, i + 1);
+    //         // let secondSyllable = wordArray.slice(i + 1);
+    //         outputArray.push(keptSyllable.join(""));
+    //         // outputArray.push(secondSyllable.join(""));
+    //         wordArray = wordArray.slice(i + 1);
+    //     }
 
-            //Digraph
+    //Digraph
 
 
-            if (!vowelArray.includes(wordArray[i])) {
-                if (!vowelArray.includes(wordArray[i + 1])) {
-                    let conPair = (wordArray[i] + wordArray[i + 1]).toString();
-                    if (digraphBlendArray.includes(conPair)) {
-                        continue;
-                    } else {
-                        let keptSyllable = wordArray.slice(0, i + 1);
-                        // let secondSyllable = wordArray.slice(i + 1);
-                        outputArray.push(keptSyllable.join(""));
-                        // outputArray.push(secondSyllable.join(""));
-                        wordArray = wordArray.slice(i + 1);
-                    }
-                }
-            }
+    // if (!vowelArray.includes(wordArray[i])) {
+    //     if (!vowelArray.includes(wordArray[i + 1])) {
+    //         let conPair = (wordArray[i] + wordArray[i + 1]).toString();
+    //         if (digraphBlendArray.includes(conPair)) {
+    //             continue;
+    //         } else {
+    //             let keptSyllable = wordArray.slice(0, i + 1);
+    // let secondSyllable = wordArray.slice(i + 1);
+    // outputArray.push(keptSyllable.join(""));
+    // outputArray.push(secondSyllable.join(""));
+    // wordArray = wordArray.slice(i + 1);
+    //         }
+    //     }
+    // }
 
-            //Vowel Teams
+    //Vowel Teams
 
-            if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
-                let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
-                if (vowelTeams.includes(vowelPair)) {
-                    outputArray.push(wordArray.join(""));
-                    wordArray = [];
-                    break;
-                } else {
-                    let keptSyllable = wordArray.slice(0, i + 1);
-                    // let secondSyllable = wordArray.slice(i + 1);
-                    outputArray.push(keptSyllable.join(""));
-                    // outputArray.push(secondSyllable.join(""));
-                    wordArray = wordArray.slice(i + 1);
-                    // if (wordArray.length !== 0) {
-                    //     outputArray.push(wordArray.join(""));
-                    // wordArray = [];
-                    // }
-                    break;
-                }
-            }
-        } if (wordArray.length > 0) {
-            outputArray.push(wordArray.join(""));
-        }
-        console.log(wordArray);
-        return outputArray;
-    }
+    // if (vowelArray.includes(wordArray[i]) && vowelArray.includes(wordArray[i + 1])) {
+    //     let vowelPair = (wordArray[i] + wordArray[i + 1]).toString();
+    //     if (vowelTeams.includes(vowelPair)) {
+    //         outputArray.push(wordArray.join(""));
+    //         wordArray = [];
+    //         break;
+    //     } else {
+    //         let keptSyllable = wordArray.slice(0, i + 1);
+    // let secondSyllable = wordArray.slice(i + 1);
+    // outputArray.push(keptSyllable.join(""));
+    // outputArray.push(secondSyllable.join(""));
+    // wordArray = wordArray.slice(i + 1);
+    // if (wordArray.length !== 0) {
+    //     outputArray.push(wordArray.join(""));
+    // wordArray = [];
+    // }
+    //                     break;
+    //                 }
+    //             }
+    //         } if (wordArray.length > 0) {
+    //             outputArray.push(wordArray.join(""));
+    //         }
+    //         console.log(wordArray);
+    //         return outputArray;
+    //     }
 }
-
