@@ -57,10 +57,11 @@ describe('vcvCheck()', () => {
         const wordArray = ["h", "a", "b", "i", "t"];
         expect(vcvCheck(wordArray)).toEqual(["b", "i", "t"]);
     });
-    test('if length of word array is empty, return word array', () => {
-        const wordArray = [];
-        expect(vcvCheck(wordArray)).toEqual([]);
+    test('should ignore vcv rule if word ends in silent e', () => {
+        const wordArray = ["b", "o", "n", "e"];
+        expect(vcvCheck(wordArray)).toEqual(["b", "o", "n", "e"]);
     });
+
 });
 
 describe('digraphCheck()', () => {
@@ -97,6 +98,10 @@ describe("wordSyllableCounter()", () => {
     test('should take wordArray and return outputArray of syllables', () => {
         const testArray = ["r", "o", "b", "b", "e", "r"];
         expect(wordSyllableCounter(testArray)).toEqual(["rob", "ber"]);
+    });
+    test('if testArray length is > 0, return output array', () => {
+        const testArray = ["c", "h", "a", "l", "k"];
+        expect(wordSyllableCounter(testArray)).toEqual(["chalk"]);
     });
 });
 
