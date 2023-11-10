@@ -5,11 +5,9 @@ export function masterFunction(poemArray) {
     for (const word of poemArray) {
         let lettersArray = word.split("");
         let sylArray = wordSyllableCounter(lettersArray);
-        console.log(sylArray);
         let sylCount = syllableCount(sylArray);
         sylTotal += sylCount;
     }
-    console.log(sylTotal);
     return sylTotal;
 }
 
@@ -153,20 +151,13 @@ export function endsInYCheck(wordArray) {
 }
 
 export class Haiku {
-
     constructor(poem) {
         this.poem = poem; //right now poem is same as one word
     }
 
     haikuPoemArray() {
-        let poemArray = (this.poem).toLowerCase().split(" ");
+        let lowerPoem = (this.poem).toLowerCase();
+        let poemArray = lowerPoem.split(" ");
         return poemArray;
     }
-
-    // haikuWordArray(words) {
-    //     let wordArray = words.split("")
-    //     return wordArray;
-    // }
-
-
 }
