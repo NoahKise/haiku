@@ -6,7 +6,6 @@ import { Haiku, masterFunction } from "./haiku.js";
 function handlePoemCheck(e) {
     e.preventDefault();
     const userPoem = document.getElementById('haikuInput').value;
-    console.log(userPoem);
     const userHaikuObject = new Haiku(userPoem);
     const newSyllableFinalCount = masterFunction(userHaikuObject.haikuPoemArray());
     const divResult = document.getElementById('result');
